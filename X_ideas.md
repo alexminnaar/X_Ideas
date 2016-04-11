@@ -46,7 +46,7 @@ Given a document, identify the tokens corresponding to mentions of specific name
 There are only a few known ways of solving the NER problem
 
 1. Heuristics: Dictionary matching, regex etc.  Generally low performance.
-2. Model Based:  Train a probabilistic model on a training dataset (Crowdflower, mechanical turk, etc.).  Also useful for the heurstic approach for evaluation purposes.
+2. Model Based:  Train a probabilistic model on a training dataset (Crowdflower, Mechanical Turk, etc.).  Also useful for the heurstic approach for evaluation purposes.
 
 
 Once the mention has been identified, it must be disambiguated wrt a knowledgebase of canonical entity names.  Obviously this first requires us to build a knowledgebase of canonical entity names.  The knowledgebase depends on the entities we are interested in.  Some public knowledgebases are Freebase, YAGO, etc. however the entities we are interested in are likely too specific to be included in these.  
@@ -56,21 +56,19 @@ Here are some possible ways to build our knowledgebase.
 * __Person Entities:__  Canonical person names can be extracted from gmail/outlook contacts, Slack contacts, Salesforce contacts.
 * __Company Entities:__  Canonical company names can be extracted from Salesforce (I assume...). 
 
-The next step is to link the named entity mention to the most likely entry in the knowledgebase.  This is a straight-forward learning to rank problem.  The ranking of knowledgebase entries for a given named entity mention should be dependent upon
+The next step is to link the named entity mention to the most likely entry in the knowledgebase.  This is a straight-forward _learning to rank_ problem.  The ranking of knowledgebase entries for a given named entity mention should be dependent upon
 
-* String similarity between mention and canonical name.
+* String similarity between mention and canonical name or any known aliases of the canonical name.
 * Context of mention and how it relates to known facts about the candidate knowledgebase entry.
 
 
 ##4. Email Signature Extraction
 
 ###Problem:
-Most professional emails contain a signature at the end which usually contains information about the sender (i.e. name, phone number, address, company, etc.).  Extracting this information could be very beneficial in knowledgebase building.  Since we know that the signature contains information about the sender, and the sender's name is already in the knowledgebase (because it is a gmail contact), we can use this information to augment this person's knowledgebase entry.  Having a more detailed knowledgebase has many benefits.  For example, it can improve disamiguation of entity mentions of this type.
+Most professional emails contain a signature at the end which usually contains information about the sender (i.e. name, phone number, address, company, etc.).  Extracting this information could be very beneficial in knowledgebase building.  Since we know that the signature contains information about the sender, and the sender's name is already in the knowledgebase (because it is a gmail contact), we can use this information to augment this person's knowledgebase entry.  Having a more detailed knowledgebase has many benefits.  For example, it can improve disambiguation of entity mentions of this type.  Signatures can also provide aliases which we can record in a knowledgebase (For example, the signature "regards, Al" for an emal sent by "Alex Minnaar" tells us that "Al" is an alias for the canonical name "Alex Minnaar").
 
 ###Potential Solutions:
 Email signature extraction is very similar to the named entity recognition problem, however there is no disambiguation part because we know that all of the extracted information is associated with the sender.
-
-
 
 
 ##5. Attachment Analysis
