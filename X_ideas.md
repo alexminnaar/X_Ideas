@@ -31,19 +31,40 @@ __Potential Solutions:__
     * Topic Modelling:  Train an LDA model on just the email text. However in this will great more broad, non-specific tags (more like categories).
     * Tf-Idf Tags:  Tag an email based on unigrams or bigrams with the highest _tf-idf_ scores.  However this might yeild unexpected results and would only produce tags that are words appearing in the email (overly specific).
 
-_Easy to evaluate if there is training data._
+_Easy to evaluate if there is training data.  How much training data do we have access to?  X-specific tags? Can we get gmail/outlook tags also?????_
  
 
 
 ##3. Named Entity Recognition and Disambiguation
 
-__Problem:__  Given a document, identify the tokens corresponding to mentions of specific named entities (e.g. names, organizations, locations etc.).  Once these mentions 
+__Problem:__  Given a document, identify the tokens corresponding to mentions of specific named entities (e.g. names, organizations, locations etc.).  Once these mentions have been identified we want to link them to canonical entries in a knowledgebase (disambiguation).
 
 __Potential Solutions:__
 There are only a few known ways of solving the NER problem
 
+1. Heuristics: Dictionary matching, regex etc.  Generally low performance.
+2. Model Based:  Train a probabilistic model on a training dataset (Crowdflower, mechanical turk, etc.).  Also useful for the heurstic approach for evaluation purposes.
+
+
+Once the mention has been identified, it must be disambiguated wrt a knowledgebase of canonical entity names.  Obviously this first requires us to build a knowledgebase of canonical entity names.  The knowledgebase depends on the entities we are interested in.  Some public knowledgebases are Freebase, YAGO, etc. however the entities we are interested in are likely too specific to be included in these.  
+
+Here are some possible ways to build our knowledgebase.
+
+* __Person Entities:__  Canonical person names can be extracted from gmail/outlook contacts, Slack contacts, Salesforce contacts.
+* __Company Entities:__  Canonical company names can be extracted from Salesforce (I assume...). 
+
+The next step is to link the named entity mention to the most likely entry in the knowledgebase.  This is a straight-forward learning to rank problem.  The ranking of knowledgebase entries for a given named entity mention should be dependent upon
+
+* String similarity between mention and canonical name.
+* Context of mention and how it relates to known facts about the candidate knowledgebase entry.
+
 
 ##4. Email Signature Extraction
+
+__Problem:__  Most professional emails contain a signature at the end which usually contains information about the sender (i.e. name, phone number, address, company, etc.).  Extracting this information could be very beneficial in knowledgebase building.  Since we know that the signature contains information about the sender, and the sender's name is already in the knowledgebase (because it is a gmail contact), we can use this information to augment this person's knowledgebase entry.  Having a more detailed knowledgebase has many benefits.  For example, it can improve disamiguation of entity mentions of this type.
+
+__Potential Solutions:__
+Email signature extraction is very similar to the named entity recognition problem, however there is no disambiguation part because we know that all of the extracted information is associated with the sender.
 
 
 
