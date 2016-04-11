@@ -2,9 +2,10 @@
 
 ##1. Semantic Search
 
-__Problem:__  Given a search query _q_ containing query terms _q1,...,qN_, try to augment the query terms by adding additional terms that are semantically similar. This broadens the search results to include documents that do not necessarily contain any terms included in the original query but do contain terms in the augmented set. 
+###Problem:  
+Given a search query _q_ containing query terms _q1,...,qN_, try to augment the query terms by adding additional terms that are semantically similar. This broadens the search results to include documents that do not necessarily contain any terms included in the original query but do contain terms in the augmented set. 
 
-__Potential Solutions:__  
+###Potential Solutions:  
 A potential solution to this problem must include a method by which to find semantically similar terms to a given query term.
 
 1.  __Word Vectors:__ Compute word vectors for every word in the vocabulary (via the _Word2Vec_ or _GloVe_ methods).  Compute similarity between two arbitrary words by taking the cosine similarity between their corresponding word vectors.  Can either
@@ -21,9 +22,10 @@ _How do we evaluate this????_
 
 ##2. Tag Recommendation
 
-__Problem:__ Tagging is often used as way to organize documents as an alternative or compliment to full-text search.  Let's look at the case of emails.  Most email services provide a tagging feature (it looks like _X_ provides tagging as well).  However, in most cases, the number of emails that a user tags is _much_ smaller than the number of emails that are left un-tagged.  From the set of tagged emails, we would like to train a tag recommender system that could then be applied to the set of un-tagged emails.  This way, the organizational benefits of tagging can be extended to all emails rather than just the small set of those that the user manually tagged.   This is similar to email classification but since the set of potential tags is very large, it is more appropriate to treat it as a recommendation problem.
+###Problem:
+Tagging is often used as way to organize documents as an alternative or compliment to full-text search.  Let's look at the case of emails.  Most email services provide a tagging feature (it looks like _X_ provides tagging as well).  However, in most cases, the number of emails that a user tags is _much_ smaller than the number of emails that are left un-tagged.  From the set of tagged emails, we would like to train a tag recommender system that could then be applied to the set of un-tagged emails.  This way, the organizational benefits of tagging can be extended to all emails rather than just the small set of those that the user manually tagged.   This is similar to email classification but since the set of potential tags is very large, it is more appropriate to treat it as a recommendation problem.
 
-__Potential Solutions:__  
+###Potential Solutions:  
 
 1.  Solve this problem with known recommender system methods based on training data of tags.
     * Simple Solution:  Build simple association rule mappings between tags and words appearing in emails (based on Pearson correlation, PMI, etc.).
@@ -37,9 +39,10 @@ _Easy to evaluate if there is training data.  How much training data do we have 
 
 ##3. Named Entity Recognition and Disambiguation
 
-__Problem:__  Given a document, identify the tokens corresponding to mentions of specific named entities (e.g. names, organizations, locations etc.).  Once these mentions have been identified we want to link them to canonical entries in a knowledgebase (disambiguation).
+###Problem:  
+Given a document, identify the tokens corresponding to mentions of specific named entities (e.g. names, organizations, locations etc.).  Once these mentions have been identified we want to link them to canonical entries in a knowledgebase (disambiguation).
 
-__Potential Solutions:__
+###Potential Solutions:
 There are only a few known ways of solving the NER problem
 
 1. Heuristics: Dictionary matching, regex etc.  Generally low performance.
@@ -61,9 +64,10 @@ The next step is to link the named entity mention to the most likely entry in th
 
 ##4. Email Signature Extraction
 
-__Problem:__  Most professional emails contain a signature at the end which usually contains information about the sender (i.e. name, phone number, address, company, etc.).  Extracting this information could be very beneficial in knowledgebase building.  Since we know that the signature contains information about the sender, and the sender's name is already in the knowledgebase (because it is a gmail contact), we can use this information to augment this person's knowledgebase entry.  Having a more detailed knowledgebase has many benefits.  For example, it can improve disamiguation of entity mentions of this type.
+###Problem:
+Most professional emails contain a signature at the end which usually contains information about the sender (i.e. name, phone number, address, company, etc.).  Extracting this information could be very beneficial in knowledgebase building.  Since we know that the signature contains information about the sender, and the sender's name is already in the knowledgebase (because it is a gmail contact), we can use this information to augment this person's knowledgebase entry.  Having a more detailed knowledgebase has many benefits.  For example, it can improve disamiguation of entity mentions of this type.
 
-__Potential Solutions:__
+###Potential Solutions:
 Email signature extraction is very similar to the named entity recognition problem, however there is no disambiguation part because we know that all of the extracted information is associated with the sender.
 
 
