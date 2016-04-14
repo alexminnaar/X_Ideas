@@ -30,7 +30,7 @@ Tagging is often used as way to organize documents as an alternative or complime
 1.  Solve this problem with known recommender system methods based on training data of tags.
     * Simple Solution:  Build simple association rule mappings between tags and words appearing in emails (based on Pearson correlation, PMI, etc.).
 2.  Don't use tag training data at all.
-    * Topic Modelling:  Train an LDA model on just the email text. However in this will great more broad, non-specific tags (more like categories).
+    * Topic Modelling:  Train an LDA model on just the email text. However in this will great more broad, non-specific tags (more like categories) of unknown quality.
     * Tf-Idf Tags:  Tag an email based on unigrams or bigrams with the highest _tf-idf_ scores.  However this might yeild unexpected results and would only produce tags that are words appearing in the email (overly specific).
 
 _Easy to evaluate if there is training data.  How much training data do we have access to?  X-specific tags? Can we get gmail/outlook tags also?????_
@@ -73,7 +73,27 @@ Email signature extraction is very similar to the named entity recognition probl
 
 ##5. Attachment Analysis
 
+###Problem:
+The problem of classifying email attachments.  Must first figure out what possible classes we are interested in (eg. offer letter, tax form, etc.).  Would also need training data.
 
 
-##6. Question Answering
+##6.  Predictive Query Text Completion
+
+###Problem:
+Real-time query suggestions as the user is typing.  Also possibly 
+
+* Google's "Did you mean ...?"
+* Amazon's search by category "_blah_ in _electronics_".  Categories could be content sources like _Email_, _Salesforce_, etc.  Or possible entities like _People_, _Companies_, etc.
+
+
+##7.  General Recommender System
+
+###Problem:
+The user is viewing some content and we want to recommend similar content based on
+
+* The words contained in the content.
+* Entities contained in the content.
+* Content type - email, salesforce etc.
+
+##8. Question Answering
 
