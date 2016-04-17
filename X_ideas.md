@@ -87,7 +87,7 @@ The next step is to link the named entity mention to the most likely entry in th
 
 * [A Test Collection for Email Entity Linking (paper)](https://terpconnect.umd.edu/~oard/pdf/akbc14.pdf)
 * [Annotating Large Email Datasets for Named Entity Recognition with Mechanical Turk (paper)](https://www.aclweb.org/anthology/W/W10/W10-0712.pdf)
-* [Entity Disambiguation for Knowledge Base Population](http://ebiquity.umbc.edu/_file_directory_/papers/500.pdf)
+* [Entity Disambiguation for Knowledge Base Population (paper)](http://ebiquity.umbc.edu/_file_directory_/papers/500.pdf)
 
 ##4. Email Signature Extraction
 
