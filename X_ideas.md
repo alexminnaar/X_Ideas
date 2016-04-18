@@ -43,6 +43,8 @@ Tagging is often used as way to organize documents as an alternative or complime
     * Tf-Idf Tags:  Tag an email based on unigrams or bigrams with the highest _tf-idf_ scores.  However this might yeild unexpected results and would only produce tags that are words appearing in the email (overly specific).
 
 _Easy to evaluate if there is training data.  How much training data do we have access to?  X-specific tags? Can we get gmail/outlook tags also?????_
+
+Tags available!
  
 ###Resources
 
